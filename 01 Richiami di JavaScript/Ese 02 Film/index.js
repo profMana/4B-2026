@@ -11,10 +11,44 @@ const films = [
     [7, "Inception", true, "18-04-2024", 5]
 ];
 
+let tBody = document.getElementsByTagName("tbody")[0];
 
-//window.addEventListener("load", function () {
-window.onload = function() {
+for (const film of films) {
+    let row = document.createElement("tr");
+    tBody.appendChild(row);
+    for (let i = 0; i < film.length; i++) {
+        const field = film[i];
+        let cell = document.createElement("td");
+        row.appendChild(cell);
+        if (i == 2) {
+            // è il campo "preferito"
+            createPreferitoInnerHtml(cell, field);
+        } else if (i == 4) {
+            // è il campo "rating"
+            createRatingInnerHtml(cell, field);
+        } else {
+            // altro campo, lo tratto come stringa
+            cell.innerHTML = field;
+        }
+    }
+}
 
+function createPreferitoInnerHtml(cell, preferitoValue) {
+    let check = document.createElement("input");
+    check.type = "checkbox";
+    check.disabled = true;
+    check.checked = preferitoValue;
+    cell.appendChild(check);
+}
 
-
+function createRatingInnerHtml(cell, ratingValue) {
+    for (let i = 0; i < 5; i++) {
+        let star = document.createElement("i");
+        if (i < ratingValue) {
+            star.classList.add("bi", "bi-star-fill");
+        } else {
+            star.classList.add("bi", "bi-star");
+        }
+        cell.appendChild(star);
+    }
 }
