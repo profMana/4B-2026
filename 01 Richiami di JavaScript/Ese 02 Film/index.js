@@ -10,15 +10,31 @@ let films = [
     [7, "Inception", true, "18-04-2024", 5]
 ];
 
+// inizializzazioni
 let tBody = document.getElementsByTagName("tbody")[0];
-
+const modal = new bootstrap.Modal("#modal-count-films")
+const alertLogin = document.getElementById("alert-login");
 addEventListeners()
+
+// avvio
 visualizza()
 
 function addEventListeners(){
     let btnAdd = document.getElementById("btn-add")
     btnAdd.addEventListener("click", addNewFilm)
     btnClear.addEventListener("click", pulisciLista)
+    btnReload.addEventListener("click", function(){
+        window.location.reload()
+        // window.location.href = "./index.html"
+    })
+    btnCount.addEventListener("click", contaFilm)
+    let btnLogin = document.getElementById("btn-login")
+    btnLogin.addEventListener("click", visualizzaLogin)
+    // const btnLoginClose = document.getElementsByClassName("btn-close")[1]
+    const btnLoginClose = document.querySelector(".alert .btn-close")
+    btnLoginClose.addEventListener("click", function(){
+        alertLogin.classList.add("d-none")
+    })
 }
 
 function visualizza(){
@@ -89,6 +105,15 @@ function pulisciLista(){
     visualizza()
 }
 
+function contaFilm(){
+    const span = document.getElementById("span-n-films") 
+    span.textContent = films.length
+    modal.show();
+}
+
+function visualizzaLogin(){
+   alertLogin.classList.remove("d-none")
+}
 
 function random(min, max){
     return (Math.floor((max-min)*Math.random())) + min
