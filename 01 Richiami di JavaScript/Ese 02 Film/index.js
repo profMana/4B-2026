@@ -19,11 +19,11 @@ addEventListeners()
 // avvio
 visualizza()
 
-function addEventListeners(){
+function addEventListeners() {
     let btnAdd = document.getElementById("btn-add")
     btnAdd.addEventListener("click", addNewFilm)
     btnClear.addEventListener("click", pulisciLista)
-    btnReload.addEventListener("click", function(){
+    btnReload.addEventListener("click", function () {
         window.location.reload()
         // window.location.href = "./index.html"
     })
@@ -32,13 +32,13 @@ function addEventListeners(){
     btnLogin.addEventListener("click", visualizzaLogin)
     // const btnLoginClose = document.getElementsByClassName("btn-close")[1]
     const btnLoginClose = document.querySelector(".alert .btn-close")
-    btnLoginClose.addEventListener("click", function(){
+    btnLoginClose.addEventListener("click", function () {
         alertLogin.classList.add("d-none")
     })
 }
 
-function visualizza(){
-    tBody.innerHTML=""
+function visualizza() {
+    tBody.innerHTML = ""
     for (const film of films) {
         let row = document.createElement("tr");
         tBody.appendChild(row);
@@ -80,16 +80,16 @@ function createRatingInnerHtml(cell, ratingValue) {
     }
 }
 
-function addNewFilm(){
+function addNewFilm() {
     let id = films.length + 1
     let title = prompt("Inserire il titolo del nuovo film ")
-    let aus = random(0,2)
+    let aus = random(0, 2)
     let favorite = Boolean(aus)
     //console.log(favorite)
-    let today=(new Date()).toLocaleDateString().replaceAll("/", "-")
-    let rating = random(1,6)
+    let today = (new Date()).toLocaleDateString().replaceAll("/", "-")
+    let rating = random(1, 6)
 
-    let film =[]
+    let film = []
     film.push(id)
     film.push(title)
     film.push(favorite)
@@ -100,21 +100,24 @@ function addNewFilm(){
     visualizza()
 }
 
-function pulisciLista(){
-    films=[]
+function pulisciLista() {
+    films = []
     visualizza()
 }
 
-function contaFilm(){
-    const span = document.getElementById("span-n-films") 
+function contaFilm() {
+    const span = document.getElementById("span-n-films")
     span.textContent = films.length
     modal.show();
 }
 
-function visualizzaLogin(){
-   alertLogin.classList.remove("d-none")
+function visualizzaLogin() {
+    alertLogin.classList.remove("d-none")
+    setTimeout(function () {
+        alertLogin.classList.add("d-none")
+    }, 3000)
 }
 
-function random(min, max){
-    return (Math.floor((max-min)*Math.random())) + min
+function random(min, max) {
+    return (Math.floor((max - min) * Math.random())) + min
 }
