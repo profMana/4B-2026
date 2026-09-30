@@ -22,7 +22,7 @@ function  loadData(){
     row.classList.add("row")
     content.append(row)
 
-    // ciclo di visualizzazione dei singoli prodotto
+    // ciclo di visualizzazione dei singoli prodotti
     for (let product of products){
        const divWrapper = document.createElement("div")
        divWrapper.classList.add("col-md-4")
